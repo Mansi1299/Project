@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
-// import Sign from "./component/sign";
+import React, {  useState } from "react";
+import { createSearchParams, useNavigate } from "react-router-dom";
+
 import "./mycss/sig.css";
 function Signup() {
   const [detail, setDetail] = useState({ name: "", password: "", mailid: "" });
@@ -9,10 +10,15 @@ function Signup() {
       [e.target.name]: e.target.value,
     });
   }
- 
+  const useNavigateSearch = () => {
+    const navigate = useNavigate();
+    return (pathname, params) =>
+      navigate({ pathname, search: `?${createSearchParams(params)}` });
+  };
+  const navigateSearch = useNavigateSearch();
   const onSubmit = (e) => {
     e.preventDefault();
-    
+
     localStorage.setItem(
       "userinfo",
       JSON.stringify({
@@ -21,6 +27,8 @@ function Signup() {
         mailid: detail.mailid,
       })
     );
+    console.log();
+    navigateSearch("/loginpage");
   };
   return (
     <>

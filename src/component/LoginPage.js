@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import "./mycss/log.css";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+const LoginPage=()=> {
+  const navigate = useNavigate();
 
-function LoginPage() {
   const [logdetail, setLogdetail] = useState({ password: "", mailid: "" });
   function changehandle(e) {
     setLogdetail({
@@ -11,16 +13,16 @@ function LoginPage() {
       [e.target.name]: e.target.value,
     });
   }
-  function check(e) {
+
+  const check=(e)=> {
     e.preventDefault();
     const storedName = JSON.parse(localStorage.getItem("userinfo"));
 
-    console.log(storedName);
-
-    debugger;
-
-    if (logdetail.mailid === storedName && logdetail.password === storedName) {
-      alert("You are logged in.");
+    if (
+      logdetail.mailid === storedName.mailid &&
+      logdetail.password === storedName.password
+    ) {
+      navigate("/");
     } else {
       alert("Error on login");
     }
@@ -28,37 +30,38 @@ function LoginPage() {
 
   return (
     <>
-      <div>
-        <Form>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control
-              type="email"
-              placeholder="Enter email"
+      <div class="login-page">
+        <div class="form">
+          <div class="login">
+            <div class="login-header">
+              <h3>LOGIN</h3>
+              <p>Please enter your credentials to login.</p>
+            </div>
+          </div>
+          <form class="login-form">
+            <input
+              type="text"
+              placeholder="username"
               value={logdetail?.mailid}
+              name="mailid"
               onChange={changehandle}
             />
-            <Form.Text className="text-muted">
-              We'll never share your email with anyone else.
-            </Form.Text>
-          </Form.Group>
-
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
+            <input
               type="password"
-              placeholder="Password"
-              value={logdetail?.mailid}
+              placeholder="password"
+              value={logdetail?.password}
+              name="password"
               onChange={changehandle}
             />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" label="Check me out" />
-          </Form.Group>
-          <Button variant="primary" type="submit" onClick={check}>
-            Submit
-          </Button>
-        </Form>
+          </form>
+          <button onClick={check}>login</button>
+          <p class="message">
+            Not registered?{" "}
+            <button type="button" onClick={() => navigate("/signup")}>
+              Create an account
+            </button>
+          </p>
+        </div>
       </div>
     </>
   );

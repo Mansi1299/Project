@@ -4,11 +4,16 @@ import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
+import axios from "axios";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
 const root = ReactDOM.createRoot(document.getElementById('root'));
+axios.defaults.baseURL = process.env.REACT_APP_BASE_URL;
 root.render(
   <React.StrictMode>
+     <Provider store={store}>
     <App />
+    </Provider>
   </React.StrictMode>
 );
 
