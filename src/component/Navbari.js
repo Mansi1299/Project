@@ -10,8 +10,9 @@ function Navbari() {
       <Navbar bg="dark" variant="dark">
         <Container>
           <Nav className="">
-            <Link to="/"> Home</Link>
-             <Link to="/login">Login</Link>
+            <Link to="/login" style={{backgroundColor:'black',color:"white",padding:'14px 25px',textAlign:"center",display:'inline-block'}}> Home</Link>
+           
+             <Link to="/login" style={{backgroundColor:'black',color:"white",padding:'14px 25px',textAlign:"center",display:'inline-block'}}>Login</Link>
           </Nav>
         </Container>
       </Navbar>

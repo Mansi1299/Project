@@ -17,7 +17,7 @@ const initialState = {
 export const GetPosts = createAsyncThunk("Getpost", async (userId, thunkAPI) => {
     console.log(userId)
     try{
-        const data = await axios.get("/posts")
+        const data = await axios.get("https://jsonplaceholder.typicode.com/posts")
         return data.data
     }
     catch(e){

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./mycss/log.css";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
+// import { ProvideContext } from "./ContextAPi";
 const LoginPage=()=> {
   const navigate = useNavigate();
 
@@ -22,7 +22,7 @@ const LoginPage=()=> {
       logdetail.mailid === storedName.mailid &&
       logdetail.password === storedName.password
     ) {
-      navigate("/");
+      navigate("/home");
     } else {
       alert("Error on login");
     }
@@ -30,15 +30,15 @@ const LoginPage=()=> {
 
   return (
     <>
-      <div class="login-page">
-        <div class="form">
-          <div class="login">
-            <div class="login-header">
+      <div className="login-page">
+        <div className="form">
+          <div className="login">
+            <div className="login-header">
               <h3>LOGIN</h3>
               <p>Please enter your credentials to login.</p>
             </div>
           </div>
-          <form class="login-form">
+          <form className="login-form">
             <input
               type="text"
               placeholder="username"
@@ -55,7 +55,7 @@ const LoginPage=()=> {
             />
           </form>
           <button onClick={check}>login</button>
-          <p class="message">
+          <p className="message">
             Not registered?{" "}
             <button type="button" onClick={() => navigate("/signup")}>
               Create an account
