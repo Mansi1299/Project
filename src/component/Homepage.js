@@ -38,7 +38,7 @@ function Homepage() {
     // }
   };
 
-  //End checkbox code
+ 
 
   const filterData = useMemo(() => {
     if (!!searchTitle) {
@@ -60,7 +60,7 @@ function Homepage() {
    
       <div className="row">
         {postData.loading ? (
-          <p>Loading.................</p>
+          <p>Loading..........................................................................................</p>
         ) : (
           filterData.map((item, id) => {
             const isChecked = checked.some((id) => item.id === id);

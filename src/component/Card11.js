@@ -1,11 +1,8 @@
 import axios from "axios";
 // import { useEffect, useState } from "react";
 import React, { memo, useEffect, useState } from "react";
-
 import { useNavigate } from "react-router-dom";
-
 import { useLocation } from "react-router-dom";
-
 function useQuery() {
   const { search } = useLocation();
   return React.useMemo(() => new URLSearchParams(search), [search]);
